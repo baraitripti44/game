@@ -1,0 +1,48 @@
+# Уникальный скрипт на языке Ruby
+
+# Определение класса "Автомобиль"
+class Car
+  attr_accessor :brand, :model, :year
+
+  # Конструктор класса
+  def initialize(brand, model, year)
+    @brand = brand
+    @model = model
+    @year = year
+  end
+
+  # Метод для вывода информации об автомобиле
+  def display_info
+    puts "Марка: #{@brand}"
+    puts "Модель: #{@model}"
+    puts "Год выпуска: #{@year}"
+  end
+end
+
+# Создание списка автомобилей
+cars = []
+cars << Car.new("BMW", "X5", 2018)
+cars << Car.new("Audi", "A4", 2020)
+cars << Car.new("Mercedes-Benz", "C-Class", 2019)
+
+# Вывод информации об каждом автомобиле
+cars.each do |car|
+  car.display_info
+  puts "-" * 20
+end
+
+# Поиск автомобиля по году выпуска
+puts "Введите год выпуска автомобиля для поиска:"
+year_input = gets.chomp.to_i
+
+found_cars = cars.select { |car| car.year == year_input }
+
+if found_cars.empty?
+  puts "Автомобиль с годом выпуска #{year_input} не найден."
+else
+  puts "Найденные автомобили с годом выпуска #{year_input}:"
+  found_cars.each do |car|
+    car.display_info
+    puts "-" * 20
+  end
+end
